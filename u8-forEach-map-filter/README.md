@@ -1,3 +1,3 @@
 # Array Methods - forEach, Map, & Filter
 
-Open the index.html file in a browser to observe unit tests run through the Jasmine Testing Framework. Solutions for these exercises can be found in the `foreach-map-filter.js` file. 
+Exercises within this directory focus on practices coommon array methds forEach, map, and filter. Completed exercises/solutions can be found in the [foreach-map-filter.js](foreach-map-filter.js) file. 

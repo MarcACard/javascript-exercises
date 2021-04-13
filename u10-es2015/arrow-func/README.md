@@ -12,6 +12,7 @@ function double(arr) {
 }
 
 /* Re-write using Arrow Function Shorthand */
+const double = arr => arr.map(val => val * 2);
 
 ```
 
@@ -29,5 +30,7 @@ function squareAndFindEvens(numbers){
 }
 
 /* Re-write using Arrow Functions */
-
+const squareAndFindEvens = numbers => numbers
+  .map(num => num ** 2)
+  .filter(square => square % 2 === 0)
 ```

@@ -8,7 +8,7 @@ var PI = 3.14;
 PI = 42; // stop me from doing this!
 /* Write an ES2015 Version Below */
 const PI = 3.14;
-PI = 42; // By delcaring PI with const, the attempt to reassign will throw an arrow.
+PI = 42; // By delcaring PI with const, the attempt to reassign will throw an errow.
 ```
 
 ## Q&A

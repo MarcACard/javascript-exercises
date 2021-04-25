@@ -21,7 +21,20 @@ myFirstVehicle.toString(); // "The vehicle is a Honda Monster Truck from 1999."
 ### Solution
 
 ``` js 
-
+class Vehicle { 
+  constructor (make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+  }
+  honk() {
+    return 'Beep.'
+  }
+  toString() {
+    const {make, model, year} = this;
+    return `The vehicle is a ${make} ${model} from ${year}.` 
+  }
+}
 ```
 
 ## Part Two
@@ -38,15 +51,17 @@ myFirstCar.numWheels;  // 4
 ### Solution
 
 ``` js 
-
+class Car extends Vehicle {
+  constructor (make, model, year) {
+    super(make, model, year);
+    this.numWheels = 4;
+  }
+}
 ```
 
 ## Part Three 
 
 Create a class for a Motorcycle. This class should inherit from **Vehicle** and each motorcycle instance should have a property called **numWheels** which has a value of 2. It should also have a **revEngine** method which returns “VROOM!!!”
-
-
-### Solution
 
 ``` js 
 let myFirstMotorcycle = new Motorcycle("Honda", "Nighthawk", 2000);
@@ -57,6 +72,20 @@ myFirstMotorcycle.toString();
 myFirstMotorcycle.honk();     // "Beep."
 myFirstMotorcycle.revEngine(); // "VROOM!!!"
 myFirstMotorcycle.numWheels;  // 2
+```
+
+### Solution
+
+``` js
+class Motorcycle extends Vehicle {
+  constructor (make, model, year) {
+    super(make, model, year);
+    this.numWheels = 2;
+  }
+  revEngine() {
+    return 'VROOM!!!';
+  }
+}
 ```
 
 ## Part Four
@@ -83,11 +112,83 @@ garage.add(new Motorcycle("Honda", "Nighthawk", 2001));
 ### Solution
 
 ``` js
+class Garage { 
+  constructor(capacity) { 
+    if (!Number.isFinite(capacity) || capacity <= 0) {
+      throw new Error('must provide a capacity > 0');
+    }
+    this.capacity = capacity; 
+    this.vehicles = [];
+  }
+  add(vehicle) {
+    const { capacity, vehicles } = this;
+    
+    if (vehicle instanceof Vehicle !== true){
+      return 'Only vehicles are allowed in here!';
+    } else if (capacity === vehicles.length) {
+      return 'Sorry, we\'re full.';
+    }
 
+    vehicles.push(vehicle);
+    return 'Vehicle added!';
+  }
+}
 ```
 
 ## Full Solution
 
 ``` js
+class Vehicle { 
+  constructor (make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+  }
+  honk() {
+    return 'Beep.'
+  }
+  toString() {
+    const {make, model, year} = this;
+    return `The vehicle is a ${make} ${model} from ${year}.` 
+  }
+}
 
+class Car extends Vehicle {
+  constructor (make, model, year) {
+    super(make, model, year);
+    this.numWheels = 4;
+  }
+}
+
+class Motorcycle extends Vehicle {
+  constructor (make, model, year) {
+    super(make, model, year);
+    this.numWheels = 2;
+  }
+  revEngine() {
+    return 'VROOM!!!';
+  }
+}
+
+class Garage { 
+  constructor(capacity) { 
+    if (!Number.isFinite(capacity) || capacity <= 0) {
+      throw new Error('must provide a capacity > 0');
+    }
+    this.capacity = capacity; 
+    this.vehicles = [];
+  }
+  add(vehicle) {
+    const { capacity, vehicles } = this;
+    
+    if (vehicle instanceof Vehicle !== true){
+      return 'Only vehicles are allowed in here!';
+    } else if (capacity === vehicles.length) {
+      return 'Sorry, we\'re full.';
+    }
+
+    vehicles.push(vehicle);
+    return 'Vehicle added!';
+  }
+}
 ```

@@ -1,0 +1,37 @@
+.wrapper {
+  margin: 0 auto;
+  max-width: 960px; 
+  height: 100vh;
+  padding: 0px 10px 0px 10px;
+}
+
+#review-form { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+#movie-reviews {
+  display: flex;
+  flex-wrap: wrap;
+  align-items:center;
+}
+
+.movie-review {
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 2px rgb(0 0 0 / 10%);
+  width: calc(100% * (1/4));
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 20px 30px 20px;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+
+

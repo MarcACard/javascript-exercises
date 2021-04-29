@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Movie Reviews</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <form id="review-form" name="review-form" autocomplete="off">
+        <div>
+          <label for="title">Movie Title</label>
+          <input type="text" id="title" name="title" minlength="2">
+        </div>
+        <div>
+          <label for="rating">Rating</label>
+          <select name="rating" id="rating" required>
+            <option value="">--Please Rate this Movie --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <button>Submit</button>
+      </form>
+    </div>
+    <div id="movie-reviews">
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+
+</html>

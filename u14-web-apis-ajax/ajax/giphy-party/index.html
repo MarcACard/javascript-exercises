@@ -3,14 +3,37 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Giphy Party!</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <div class="container">
+    <section class="header">
+      <h1 class="row">GIPHY Party</h1>
+      <div class="row">
+        <form id="search-form">
+          <input type="text" id="search-term" name="search-term" autocomplete="off" required placeholder="Enter a search term">
+        </form>
+        <button id="search" class="button">Search GIPHY</button>
+      </div>
+    </section>
 
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.js"></script>
-<script src="app.js"></script>
+    <section id="results">
+    </section>
+
+    <div class="floating-footer">
+      <button class="button" id="remove-all">Remove All</button>
+    </div>
+  </div>
+  <!-- Scripts & Libraries-->
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>

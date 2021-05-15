@@ -73,8 +73,18 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+  async addStory(user, newStory) {
+    const { title, author, url } = newStory;
+    const response = await axios({
+      method: 'post',
+      url: `${BASE_URL}/stories`,
+      data: {
+        "token": user.loginToken,
+        "story": { title, author, url },
+      }
+    })
+
+    return new Story(response.data.story);
   }
 }
 
@@ -90,13 +100,13 @@ class User {
    */
 
   constructor({
-                username,
-                name,
-                createdAt,
-                favorites = [],
-                ownStories = []
-              },
-              token) {
+    username,
+    name,
+    createdAt,
+    favorites = [],
+    ownStories = []
+  },
+    token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
@@ -192,5 +202,49 @@ class User {
       console.error("loginViaStoredCredentials failed", err);
       return null;
     }
+  }
+
+  /** Add a story to the user favorites array & update the data through the API */
+  async addFavorite(story) {
+    this.favorites.push(story);
+
+    await axios({
+      method: 'post',
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      data: {
+        token: this.loginToken
+      }
+    })
+  }
+
+  /** Remove a story from the users favorites array & update the data base  */
+
+  async removeFavorite(story) {
+    this.favorites = this.favorites.filter((fStory) => fStory.storyId !== story.storyId)
+
+    await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: 'delete',
+      data: { token: this.loginToken }
+    })
+  }
+
+  /** Check if the provided story is Favoritied by the current user */
+  isFavorite(story) {
+    return this.favorites.some(userStory => userStory.storyId ===  story.storyId)
+  }
+
+  /** Delete a story from Hack or Snooze */
+  async deleteStory(story) {
+    // Remove from ownStories
+    this.ownStories = this.ownStories.filter(userStory => userStory.storyId !== story.storyId);
+    this.favorites = this.favorites.filter(userStory => userStory.storyId !== story.storyId);
+    
+    // Remove from DB 
+    await axios({
+      url: `${BASE_URL}/stories/${story.storyId}`,
+      method: 'delete',
+      data: { token: this.loginToken }
+    })
   }
 }

@@ -105,6 +105,7 @@ function saveUserCredentialsInLocalStorage() {
  * - show the stories list
  * - update nav bar options for logged-in user
  * - generate the user profile part of the page
+ * - show favorite Stars
  */
 
 function updateUIOnUserLogin() {
